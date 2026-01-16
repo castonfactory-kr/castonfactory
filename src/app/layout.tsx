@@ -3,8 +3,8 @@ import './globals.css'
 import ClientProviders from '@/components/ClientProviders'
 
 export const metadata: Metadata = {
-    title: 'Castonfactory - Innovation in Manufacturing',
-    description: 'Welcome to Castonfactory, where innovation meets precision in manufacturing excellence.',
+    title: 'Cast on Factory - Innovation in Manufacturing',
+    description: 'Welcome to Cast on Factory, where innovation meets precision in manufacturing excellence.',
     keywords: 'castonfactory, manufacturing, innovation, business, industry',
 }
 
