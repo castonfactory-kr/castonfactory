@@ -69,18 +69,18 @@
 
 .secondaryButton {
     padding: 1rem 2.5rem;
-    background: rgba(255, 255, 255, 0.05);
-    color: white;
+    background: var(--color-button-secondary-bg);
+    color: var(--color-button-secondary-text);
     font-weight: 600;
     border-radius: var(--border-radius-md);
-    border: 2px solid rgba(255, 255, 255, 0.1);
+    border: 2px solid var(--color-button-secondary-border);
     transition: all 0.3s ease;
     backdrop-filter: blur(10px);
 }
 
 .secondaryButton:hover {
-    background: rgba(255, 255, 255, 0.1);
-    border-color: rgba(255, 255, 255, 0.3);
+    background: var(--color-bg-tertiary);
+    border-color: var(--color-accent-primary);
     transform: translateY(-3px);
 }
 

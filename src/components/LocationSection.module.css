@@ -37,8 +37,8 @@
 }
 
 .mapPlaceholder {
-    background: rgba(26, 26, 26, 0.5);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: var(--color-card-bg);
+    border: 1px solid var(--color-card-border);
     border-radius: var(--border-radius-lg);
     min-height: 500px;
     display: flex;
@@ -97,8 +97,8 @@
 }
 
 .infoCard {
-    background: rgba(26, 26, 26, 0.5);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: var(--color-card-bg);
+    border: 1px solid var(--color-card-border);
     border-radius: var(--border-radius-md);
     padding: 2rem;
     transition: all 0.3s ease;

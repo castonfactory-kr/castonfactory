@@ -1,16 +1,25 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
 
 :root {
-  --color-bg-primary: #0a0a0a;
-  --color-bg-secondary: #1a1a1a;
-  --color-bg-tertiary: #2a2a2a;
-  --color-text-primary: #ffffff;
-  --color-text-secondary: #a0a0a0;
+  /* Light Theme (Default) */
+  --color-bg-primary: #ffffff;
+  --color-bg-secondary: #f8f9fa;
+  --color-bg-tertiary: #e9ecef;
+  --color-text-primary: #1a1a1a;
+  --color-text-secondary: #6c757d;
   --color-accent-primary: #3b82f6;
   --color-accent-secondary: #8b5cf6;
   --color-accent-tertiary: #ec4899;
   --gradient-primary: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 50%, #ec4899 100%);
   --gradient-secondary: linear-gradient(135deg, #1e40af 0%, #7c3aed 100%);
+  
+  /* Card and Border Colors */
+  --color-card-bg: rgba(255, 255, 255, 0.8);
+  --color-card-border: rgba(0, 0, 0, 0.1);
+  --color-border: rgba(0, 0, 0, 0.1);
+  --color-button-secondary-bg: rgba(0, 0, 0, 0.05);
+  --color-button-secondary-text: #1a1a1a;
+  --color-button-secondary-border: rgba(0, 0, 0, 0.1);
   
   --spacing-xs: 0.5rem;
   --spacing-sm: 1rem;
@@ -26,10 +35,29 @@
   --transition-normal: 0.3s ease;
   --transition-slow: 0.5s ease;
   
-  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.1);
-  --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.2);
-  --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.3);
-  --shadow-glow: 0 0 20px rgba(59, 130, 246, 0.3);
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.15);
+  --shadow-glow: 0 0 20px rgba(59, 130, 246, 0.2);
+}
+
+/* Dark Theme */
+[data-theme='dark'] {
+  --color-bg-primary: #0a0a0a;
+  --color-bg-secondary: #1a1a1a;
+  --color-bg-tertiary: #2a2a2a;
+  --color-text-primary: #ffffff;
+  --color-text-secondary: #a0a0a0;
+  --color-card-bg: rgba(26, 26, 26, 0.5);
+  --color-card-border: rgba(255, 255, 255, 0.1);
+  --color-border: rgba(255, 255, 255, 0.1);
+  --color-button-secondary-bg: rgba(255, 255, 255, 0.05);
+  --color-button-secondary-text: #ffffff;
+  --color-button-secondary-border: rgba(255, 255, 255, 0.1);
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.5);
+  --shadow-glow: 0 0 20px rgba(59, 130, 246, 0.4);
 }
 
 * {
@@ -177,8 +205,13 @@ button {
 }
 
 .glass {
-  background: rgba(26, 26, 26, 0.7);
+  background: rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+[data-theme='dark'] .glass {
+  background: rgba(26, 26, 26, 0.7);
   border: 1px solid rgba(255, 255, 255, 0.1);
 }
