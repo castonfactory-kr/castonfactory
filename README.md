@@ -1,170 +1,165 @@
-# Cast on Factory 웹사이트 개발 가이드
+# Cast on Factory - 나만의 피규어 제작 서비스
 
-안녕하세요! 이 문서는 **Cast on Factory** 웹사이트 프로젝트를 처음 접하는 개발자나 관리자를 위한 상세 설명서입니다.
-이 프로젝트는 **"생성형 AI를 이용한 피규어 주문제작이 가능한 포토부스"**를 제작하는 혁신적인 기업, Cast on Factory를 소개하기 위해 만들어졌습니다.
+![Hero Section](https://i.imgur.com/your-hero-image.png) <!-- 이 부분은 실제 프로젝트 이미지 URL로 교체하는 것이 좋습니다 -->
 
-이 가이드를 통해 프로젝트의 구조를 이해하고, 원하는 대로 수정하고 관리하는 방법을 익힐 수 있습니다.
+## 📝 1. 프로젝트 개요
 
----
+**Cast on Factory**는 생성형 AI를 활용하여 세상에 단 하나뿐인 나만의 피규어를 주문 제작하는 서비스의 웹사이트입니다. 사용자는 F&P(Figure & Photo booth) 서비스를 통해 자신의 특별한 순간을 3D 모델로 영원히 간직할 수 있습니다.
 
-## 📋 목차
-
-1. [프로젝트 개요](#-프로젝트-개요)
-2. [시작하기](#-시작하기)
-3. [프로젝트 구조 설명](#-프로젝트-구조-설명)
-4. [주요 컴포넌트 가이드](#-주요-컴포넌트-가이드)
-5. [스타일 및 테마 시스템](#-스타일-및-테마-시스템)
-6. [커스터마이징 방법](#-커스터마이징-방법)
+이 프로젝트는 Next.js를 기반으로 구축된 정적 웹사이트로, 서비스의 핵심 가치와 비즈니스 모델을 잠재 고객에게 소개하는 것을 목표로 합니다. 깔끔한 컴포넌트 기반 구조와 CSS Modules를 활용한 스타일링이 특징입니다.
 
 ---
 
-## 🎯 프로젝트 개요
+## 🛠️ 2. 사용된 기술 (Tech Stack)
 
-이 웹사이트는 **Next.js** (App Router 방식)와 **TypeScript**로 구축되었습니다.
-최신 웹 기술을 사용하여 빠르고 검색 엔진에 친화적이며, **라이트/다크 모드**를 완벽하게 지원하는 반응형 웹사이트입니다.
-
-### 주요 기술 스택
-
-- **Framework**: Next.js 15+ (React 기반의 최신 웹 프레임워크)
-- **Language**: TypeScript (안정적인 자바스크립트)
-- **Styling**: CSS Modules (컴포넌트별로 독립된 스타일 적용)
-- **Theme**: CSS Variables 기반의 라이트/다크 모드 시스템
+-   **프레임워크:** [Next.js](https://nextjs.org/) (v14+)
+-   **UI 라이브러리:** [React](https://reactjs.org/) (v18+)
+-   **언어:** [TypeScript](https://www.typescriptlang.org/)
+-   **스타일링:** [CSS Modules](https://github.com/css-modules/css-modules), Global CSS
+-   **배포:** (Vercel 또는 유사 플랫폼을 통해 배포될 것으로 예상)
 
 ---
 
-## 🚀 시작하기
+## 🔍 3. 프로젝트 리뷰 및 개선점
 
-개발 환경을 실행하여 웹사이트를 내 컴퓨터에서 미리 볼 수 있습니다.
+이 프로젝트는 Next.js의 기본을 잘 활용하고 있지만, 더 높은 수준의 확장성과 유지보수성을 위해 다음과 같은 부분들을 개선할 수 있습니다.
 
-1. **터미널 열기**: 맥북의 Terminal 앱이나 VS Code의 터미널을 엽니다.
-2. **명령어 입력**: 아래 명령어를 순서대로 입력하세요.
+#### 긍정적인 부분
 
-```bash
-# 개발 서버 실행
-npm run dev
-```
+-   **명확한 컴포넌트 분리:** `HeroSection`, `Portfolio` 등 기능 단위로 컴포넌트가 잘 분리되어 있어 코드의 가독성이 높습니다.
+-   **App Router 활용:** Next.js 13+의 App Router를 사용하여 라우팅 구조가 직관적입니다. (`/`, `/contact`, `/legal` 등)
+-   **CSS Modules:** 컴포넌트 레벨 스코프 스타일을 적용하여 클래스 이름 충돌 문제를 효과적으로 방지하고 있습니다.
 
-3. **확인하기**: 브라우저(크롬, 사파리 등)를 열고주소창에 `http://localhost:3000`을 입력하면 사이트가 보입니다.
+#### 개선이 필요한 부분
 
----
+1.  **하드코딩된 콘텐츠:**
+    -   **문제점:** `HeroSection.tsx`나 `AboutUs.tsx` 등 대부분의 컴포넌트에 표시되는 텍스트(제목, 설명 등)가 JSX 내에 직접 하드코딩되어 있습니다. 이는 콘텐츠 수정 시 매번 코드를 직접 변경해야 하므로 유지보수가 비효율적입니다.
+    -   **개선 방안:**
+        -   **(단기)** 콘텐츠를 `src/constants/content.ts` 와 같은 별도의 파일로 분리하여 관리합니다.
+        -   **(장기)** Strapi, Contentful과 같은 Headless CMS를 도입하여 비개발자도 쉽게 콘텐츠를 수정하고 관리할 수 있도록 시스템을 구축합니다.
 
-## 📂 프로젝트 구조 설명
+2.  **재사용성 낮은 컴포넌트:**
+    -   **문제점:** `HeroSection` 내의 버튼처럼 여러 곳에서 사용될 수 있는 UI 요소들이 특정 컴포넌트 내부에 종속되어 있습니다. 이로 인해 유사한 스타일의 버튼을 다른 곳에서 사용하려면 코드를 복사-붙여넣기 해야 합니다.
+    -   **개선 방안:** `Button`, `Card`, `Title` 등 범용적으로 사용될 수 있는 UI 요소들을 `src/components/common` 디렉터리에 별도의 원자적(Atomic) 컴포넌트로 분리합니다. 이를 통해 일관된 디자인 시스템을 구축하고 코드 재사용성을 극대화할 수 있습니다.
 
-폴더와 파일들이 어디에 있고, 어떤 역할을 하는지 설명합니다.
+3.  **미사용 상태 관리 로직:**
+    -   **문제점:** `ThemeContext.tsx`와 `ClientProviders.tsx`가 존재하지만, 실제 다크/라이트 모드 전환과 같은 기능이 구현되어 있지 않습니다. 현재로서는 불필요한 코드입니다.
+    -   **개선 방안:** 실제로 테마 전환 기능을 구현하거나, 만약 해당 기능이 기획에 없다면 관련 코드를 정리하여 프로젝트를 더 가볍게 만듭니다.
 
-```
-/src
- ├── /app                 # 페이지의 뼈대와 라우팅을 담당합니다.
- │    ├── layout.tsx      # 웹사이트의 공통 틀(레이아웃)을 정의합니다. (폰트, 메타데이터 등)
- │    ├── page.tsx        # 메인 페이지(홈)의 내용을 구성합니다. 컴포넌트들을 조립하는 곳입니다.
- │    └── globals.css     # 전체 사이트에 적용되는 공통 스타일과 테마 색상 변수들이 있습니다.
- │
- ├── /components          # 레고 블록처럼 조립 가능한 UI 부품(컴포넌트)들이 모여 있습니다.
- │    ├── Header.tsx           # 상단 메뉴바 (로고, 네비게이션, 테마 토글 버튼)
- │    ├── HeroSection.tsx      # 메인 비주얼 영역 (첫 인상을 주는 큰 배너)
- │    ├── OurBusiness.tsx      # 사업 소개 영역
- │    ├── Portfolio.tsx        # 포트폴리오 갤러리 영역
- │    ├── AboutUs.tsx          # 회사 소개 및 통계, 핵심 가치 영역
- │    ├── LocationSection.tsx  # 위치 정보 및 지도 영역
- │    └── Footer.tsx           # 하단 정보 영역 (저작권, 링크 등)
- │    (*.module.css 파일들은 각 컴포넌트만의 스타일을 담고 있습니다)
- │
- └── /contexts            # 전역 상태 관리 (테마 설정 등)
-      └── ThemeContext.tsx     # 라이트/다크 모드 전환 기능을 담당하는 두뇌입니다.
-```
+4.  **부족한 인터랙션:**
+    -   **문제점:** 현재 웹사이트는 정적인 정보 제공에 그치고 있습니다. 특히 `/contact` 페이지의 "문의하기" 기능은 UI만 존재할 뿐, 실제 서버로 데이터를 전송하는 로직이 없습니다.
+    -   **개선 방안:** Next.js의 **API Routes** 또는 **Server Actions**를 활용하여 문의 폼 데이터를 처리하는 백엔드 로직을 구현합니다. 이를 통해 사용자와의 상호작용을 강화하고 실제 비즈니스 리드를 수집할 수 있습니다.
 
 ---
 
-## 🧩 주요 컴포넌트 가이드
+## 🚀 4. Next.js 시작하기 튜토리얼 (For Developers)
 
-각 컴포넌트가 어떤 역할을 하고 어디와 상호작용하는지 알아봅시다.
+이 프로젝트는 Next.js, 특히 App Router의 핵심 개념을 학습하기에 매우 좋은 예제입니다. 아래 튜토리얼을 따라 프로젝트 구조를 이해하고 첫 컴포넌트를 만들어보세요.
 
-### 1. Header (헤더)
+#### 1단계: 프로젝트 구조 이해하기
 
-- **위치**: `src/components/Header.tsx`
-- **역할**: 사이트 상단에 고정되어 사용자가 어디서든 메뉴를 이동할 수 있게 합니다.
-- **주요 기능**:
-  - 로고 클릭 시 홈으로 이동
-  - 네비게이션 메뉴 (Home, Our Business 등) 클릭 시 해당 섹션으로 스크롤 이동
-  - 🌙/☀️ 버튼으로 라이트/다크 모드 전환
+-   **`src/app/`**: 이 디렉터리는 Next.js의 **App Router**가 동작하는 핵심 공간입니다.
+    -   **`layout.tsx`**: 모든 페이지에 공통으로 적용되는 최상위 레이아웃입니다. `<html>`, `<body>` 태그와 전역 Provider(`ClientProviders`)가 이곳에 위치합니다.
+    -   **`page.tsx`**: 특정 경로의 메인 UI를 정의하는 파일입니다. 예를 들어, `src/app/page.tsx`는 웹사이트의 루트 경로(`/`)를, `src/app/contact/page.tsx`는 `/contact` 경로를 담당합니다.
+    -   **`globals.css`**: 전역적으로 적용되는 CSS 파일입니다. 폰트, 기본 마진/패딩 리셋 등이 정의되어 있습니다.
 
-### 2. HeroSection (메인 배너)
+#### 2단계: 컴포넌트와 페이지의 관계 파악하기
 
-- **위치**: `src/components/HeroSection.tsx`
-- **역할**: 사이트 접속 시 가장 먼저 보이는 큰 화면입니다. 회사의 슬로건과 이미지를 보여줍니다.
-- **수정 포인트**: 제목 텍스트나 배경 그라데이션을 바꾸고 싶다면 이 파일을 수정하세요.
+`src/app/page.tsx` 파일을 열어보세요.
 
-### 3. OurBusiness & Portfolio (사업 및 포트폴리오)
-
-- **위치**: `src/components/OurBusiness.tsx`, `Portfolio.tsx`
-- **역할**: 회사가 하는 일과 작업물을 카드 형태로 보여줍니다.
-- **특징**: 마우스를 올리면 카드가 살짝 떠오르는 등의 애니메이션 효과가 들어있습니다.
-
-### 4. AboutUs (회사 소개)
-
-- **위치**: `src/components/AboutUs.tsx`
-- **역할**: 회사의 연혁, 통계(숫자), 핵심 가치(혁신, 품질 등)를 보여줍니다.
-- **스타일**: `AboutUs.module.css`에서 배경색이나 배치 등을 수정할 수 있습니다.
-
-### 5. LocationSection (위치)
-
-- **위치**: `src/components/LocationSection.tsx`
-- **역할**: 회사 위치 지도(현재는 디자인된 플레이스홀더)와 주소, 연락처, 근무 시간을 보여줍니다.
-
----
-
-## 🎨 스타일 및 테마 시스템
-
-이 프로젝트는 **라이트 모드**를 기본으로 하며, 다크 모드를 지원합니다.
-
-### 색상은 어디서 바꾸나요?
-
-모든 핵심 색상은 `src/app/globals.css` 파일에 **변수(Variable)**로 정의되어 있습니다. 여기서 색상 코드를 바꾸면 사이트 전체에 일괄 적용됩니다.
-
-```css
-/* src/app/globals.css 예시 */
-
-:root {
-  /* 라이트 모드 (기본) 색상 */
-  --color-bg-primary: #ffffff; /* 배경색 */
-  --color-text-primary: #1a1a1a; /* 글자색 */
-  --color-accent-primary: #3b82f6; /* 포인트 컬러 (파란색) */
-}
-
-[data-theme="dark"] {
-  /* 다크 모드 색상 */
-  --color-bg-primary: #0a0a0a; /* 어두운 배경 */
-  --color-text-primary: #ffffff; /* 밝은 글자 */
+```tsx
+import Header from '@/components/Header'
+// ... 다른 컴포넌트 import
+export default function Home() {
+    return (
+        <>
+            <Header />
+            <main>
+                <HeroSection />
+                {/* ... 다른 섹션 컴포넌트들 */}
+            </main>
+            <Footer />
+        </>
+    )
 }
 ```
 
-### 특정 부분의 디자인만 바꾸고 싶다면?
+이처럼 Next.js의 페이지는 여러 개의 독립적인 **컴포넌트**들을 조립하여 하나의 완전한 UI를 만들어냅니다. `src/components` 디렉터리에서 각 컴포넌트의 코드를 확인할 수 있습니다.
 
-해당 컴포넌트의 `.module.css` 파일을 찾아 수정하세요. 예를 들어, 헤더의 높이를 바꾸고 싶다면 `src/components/Header.module.css`를 수정하면 됩니다.
+#### 3단계: CSS Modules로 스타일링하기
 
----
+`src/components/HeroSection.tsx`와 `HeroSection.module.css`를 함께 살펴보세요.
 
-## 🛠 커스터마이징 방법
+-   **`HeroSection.tsx`**:
+    ```tsx
+    import styles from './HeroSection.module.css'
 
-가장 자주 하게 될 수정 작업들에 대한 가이드입니다.
+    <section id="home" className={styles.hero}>
+        <h1 className={styles.title}>...</h1>
+    </section>
+    ```
+-   **`HeroSection.module.css`**:
+    ```css
+    .hero {
+      /* ... hero 섹션 스타일 ... */
+    }
+    .title {
+      /* ... title 스타일 ... */
+    }
+    ```
 
-### Q. 글자(텍스트)를 바꾸고 싶어요.
+`import styles from ...` 구문을 통해 CSS 파일을 객체처럼 불러오고, `className={styles.클래스이름}` 형태로 적용합니다. 이렇게 하면 CSS 클래스 이름이 컴파일 시점에 고유한 해시값으로 변경되어 다른 컴포넌트와의 스타일 충돌을 원천적으로 방지합니다.
 
-1. 수정하고 싶은 내용이 있는 컴포넌트 파일(`.tsx`)을 엽니다. (예: 메인 문구를 바꾸려면 `HeroSection.tsx`)
-2. 따옴표(`'`)나 태그(`<h1>`, `<p>`) 안의 한글/영문 텍스트를 찾아 직접 수정하고 저장하세요.
-3. 브라우저에서 바로 변경된 내용을 확인할 수 있습니다.
+#### 4단계: 나만의 첫 컴포넌트 만들기 (실습)
 
-### Q. 새로운 메뉴를 추가하고 싶어요.
+`HeroSection`에 있는 버튼들을 재사용 가능한 `Button` 컴포넌트로 만들어 봅시다.
 
-1. `src/components/Header.tsx` 파일을 엽니다.
-2. `<nav>` 태그 안의 `<a href="...">` 줄을 복사해서 하나 더 만들고, 링크 주소와 이름을 변경하세요.
+1.  **파일 생성:** `src/components/common` 디렉터리를 만들고, 그 안에 `Button.tsx`와 `Button.module.css` 파일을 생성합니다.
 
-### Q. 섹션 순서를 바꾸고 싶어요.
+2.  **`Button.tsx` 작성:**
+    ```tsx
+    import Link from 'next/link';
+    import styles from './Button.module.css';
 
-1. `src/app/page.tsx` 파일을 엽니다.
-2. `<main>` 태그 안에 있는 컴포넌트들(` <HeroSection />`, `<OurBusiness />` 등)의 순서를 잘라내기/붙여넣기로 변경하면 됩니다.
+    interface ButtonProps {
+        href: string;
+        children: React.ReactNode;
+        variant?: 'primary' | 'secondary';
+    }
 
----
+    export default function Button({ href, children, variant = 'primary' }: ButtonProps) {
+        const buttonClassName = variant === 'primary' ? styles.primaryButton : styles.secondaryButton;
 
-이 가이드가 Cast on Factory 웹사이트 개발에 도움이 되기를 바랍니다!
-추가적인 도움이 필요하다면 언제든 AI 어시스턴트에게 물어봐주세요.
+        return (
+            <Link href={href} className={buttonClassName}>
+                {children}
+            </Link>
+        );
+    }
+    ```
+
+3.  **`Button.module.css` 작성:** (`HeroSection.module.css`에서 관련 스타일을 가져옵니다)
+    ```css
+    .primaryButton {
+        /* 기존 primaryButton 스타일 */
+    }
+    .secondaryButton {
+        /* 기존 secondaryButton 스타일 */
+    }
+    ```
+
+4.  **`HeroSection.tsx` 수정:**
+    -   `import Button from '@/components/common/Button';`를 추가합니다.
+    -   기존 `<a>` 태그들을 새로 만든 `Button` 컴포넌트로 교체합니다.
+        ```tsx
+        <div className={styles.cta}>
+            <Button href="#business" variant="primary">
+                비즈니스 알아보기
+            </Button>
+            <Button href="/contact" variant="secondary">
+                문의하기
+            </Button>
+        </div>
+        ```
+
+이제 `Button` 컴포넌트는 다른 어떤 곳에서도 쉽게 재사용할 수 있습니다. 이처럼 작은 단위로 컴포넌트를 분리하고 조립하는 것이 현대 프론트엔드 개발의 핵심입니다. 행운을 빕니다!
