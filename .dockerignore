@@ -1,0 +1,63 @@
+# 의존성
+node_modules
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+# Next.js 빌드 결과물
+.next/
+out/
+build
+dist
+
+# 환경 변수
+.env*.local
+.env.development
+.env.test
+
+# 테스트
+coverage
+*.lcov
+.nyc_output
+
+# Git
+.git
+.gitignore
+.gitattributes
+
+# IDE
+.vscode
+.idea
+*.swp
+*.swo
+*~
+.DS_Store
+
+# CI/CD
+.github
+.gitlab-ci.yml
+.travis.yml
+
+# 문서
+README.md
+CHANGELOG.md
+LICENSE
+*.md
+
+# Docker
+Dockerfile*
+docker-compose*.yml
+.dockerignore
+
+# 로그 및 임시 파일
+*.log
+.cache
+.temp
+tmp
+
+# 개발 전용
+.eslintrc.json
+.prettierrc
+tsconfig.tsbuildinfo
+next-env.d.ts
