@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import styles from './HeroSection.module.css'
 
 export default function HeroSection() {
@@ -18,9 +19,9 @@ export default function HeroSection() {
                         <a href="#business" className={styles.primaryButton}>
                             비즈니스 알아보기
                         </a>
-                        <a href="/contact" className={styles.secondaryButton}>
+                        <Link href="/contact" className={styles.secondaryButton}>
                             문의하기
-                        </a>
+                        </Link>
                     </div>
                 </div>
             </div>

@@ -1,5 +1,6 @@
 'use client'
 
+import Link from 'next/link'
 import styles from './Header.module.css'
 import { useTheme } from '@/contexts/ThemeContext'
 
@@ -10,14 +11,14 @@ export default function Header() {
         <header className={styles.header}>
             <div className={styles.container}>
                 <div className={styles.logo}>
-                    <h1 className={styles.logoText}><a href="/">CAST ON FACTORY</a></h1>
+                    <h1 className={styles.logoText}><Link href="/">CAST ON FACTORY</Link></h1>
                 </div>
                 <nav className={styles.nav}>
-                    <a href="/#home" className={styles.navLink}>Home</a>
-                    <a href="/#business" className={styles.navLink}>Our Business</a>
-                    <a href="/#portfolio" className={styles.navLink}>Portfolio</a>
-                    <a href="/#about" className={styles.navLink}>About Us</a>
-                    <a href="/contact" className={styles.navLink}>Contact</a>
+                    <Link href="/#home" className={styles.navLink}>Home</Link>
+                    <Link href="/#business" className={styles.navLink}>Our Business</Link>
+                    <Link href="/#portfolio" className={styles.navLink}>Portfolio</Link>
+                    <Link href="/#about" className={styles.navLink}>About Us</Link>
+                    <Link href="/contact" className={styles.navLink}>Contact</Link>
                     <button 
                         onClick={toggleTheme} 
                         className={styles.themeToggle}
